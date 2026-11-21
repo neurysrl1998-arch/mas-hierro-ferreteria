@@ -321,12 +321,14 @@
 
   <section id="cotizar" style="padding-top:0">
     <div class="wrap quote">
-      <form class="qform" id="qform" novalidate>
+      <form class="qform" id="qform" name="cotizacion" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+        <input type="hidden" name="form-name" value="cotizacion">
+        <p hidden><label>No llenar: <input name="bot-field"></label></p>
         <h3>Solicita tu cotización</h3>
-        <div class="field"><label for="qn">Nombre</label><input id="qn" required autocomplete="name" placeholder="Juan Pérez"></div>
-        <div class="field"><label for="qt">Teléfono / WhatsApp</label><input id="qt" required type="tel" autocomplete="tel" placeholder="809-000-0000"></div>
-        <div class="field full"><label for="qc">Tipo de cliente</label><select id="qc"><option>Particular / hogar</option><option>Maestro constructor / contratista</option><option>Empresa</option></select></div>
-        <div class="field full"><label for="qm">¿Qué necesitas?</label><textarea id="qm" rows="6" required placeholder="Ej.: 10 tubos PVC 1/2&quot;, 2 cementos Lanco Wet-Dry, 1 cubeta de pintura blanca…"></textarea></div>
+        <div class="field"><label for="qn">Nombre</label><input id="qn" name="nombre" required autocomplete="name" placeholder="Juan Pérez"></div>
+        <div class="field"><label for="qt">Teléfono / WhatsApp</label><input id="qt" name="telefono" required type="tel" autocomplete="tel" placeholder="809-000-0000"></div>
+        <div class="field full"><label for="qc">Tipo de cliente</label><select id="qc" name="tipo_cliente"><option>Particular / hogar</option><option>Maestro constructor / contratista</option><option>Empresa</option></select></div>
+        <div class="field full"><label for="qm">¿Qué necesitas?</label><textarea id="qm" name="pedido" rows="6" required placeholder="Ej.: 10 tubos PVC 1/2&quot;, 2 cementos Lanco Wet-Dry, 1 cubeta de pintura blanca…"></textarea></div>
         <button class="btn btn-red" type="submit">Enviar solicitud <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
         <div class="qok" id="qok" hidden></div>
       </form>

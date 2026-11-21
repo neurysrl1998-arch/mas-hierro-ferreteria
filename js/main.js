@@ -276,7 +276,26 @@
       ok.hidden = false;
       if (!name || !tel || !msg) { ok.classList.add('err'); ok.textContent = 'Completa tu nombre, tu teléfono y la lista de lo que necesitas.'; return; }
       ok.classList.remove('err');
-      ok.textContent = 'Gracias, ' + name.split(' ')[0] + '. Esta es una vista de demostración: al conectar el sitio, tu solicitud llegará a nuestro equipo y te contactaremos al ' + tel + '.';
+      var first = name.split(' ')[0];
+      var demo = function () {
+        ok.textContent = 'Gracias, ' + first + '. Esta es una vista de demostración: en el sitio publicado, tu solicitud llega a nuestro equipo y te contactamos al ' + tel + '.';
+      };
+      // En Netlify el formulario se envía de verdad (Netlify Forms); en otros entornos se muestra el aviso de demostración.
+      if (!/netlify\.app$/.test(location.hostname) && !f.dataset.live) { demo(); return; }
+      var btn = f.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      ok.textContent = 'Enviando…';
+      fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(new FormData(f)).toString() })
+        .then(function (r) {
+          if (!r.ok) throw new Error(r.status);
+          ok.textContent = 'Gracias, ' + first + '. Recibimos tu solicitud y te contactaremos al ' + tel + ' en horario laboral.';
+          f.reset();
+        })
+        .catch(function () {
+          ok.classList.add('err');
+          ok.textContent = 'No pudimos enviar tu solicitud. Revisa tu conexión e inténtalo de nuevo, o escríbenos por WhatsApp.';
+        })
+        .then(function () { btn.disabled = false; });
     });
   }
   function initCopy() {
