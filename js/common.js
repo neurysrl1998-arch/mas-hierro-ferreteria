@@ -44,6 +44,7 @@
       '<nav class="links" id="mainNav" aria-label="Principal">' +
       nav.map(function (n) {
         var hot = n[2] === 'hot';
+        if (n[2] === 'herramientas') return megaMenu(cur === 'herramientas');
         return '<a href="' + link(n[0]) + '"' + (hot ? ' class="hot"' : '') + (cur === n[2] ? ' aria-current="page"' : '') + '>' + n[1] + (hot ? ' <em>Nuevo</em>' : '') + '</a>';
       }).join('') +
       '</nav>' +
@@ -51,9 +52,49 @@
       '<button class="menu-btn" id="menuBtn" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainNav"><span></span><span></span><span></span></button>' +
       '</div></header>';
     var btn = $('menuBtn'), navEl = $('mainNav');
-    btn.addEventListener('click', function () { var open = navEl.classList.toggle('open'); btn.setAttribute('aria-expanded', open); });
-    navEl.addEventListener('click', function (e) { if (e.target.closest('a')) { navEl.classList.remove('open'); btn.setAttribute('aria-expanded', false); } });
+    btn.addEventListener('click', function () { var open = navEl.classList.toggle('open'); btn.setAttribute('aria-expanded', open); if (!open) setMega(false); });
+    navEl.addEventListener('click', function (e) { if (e.target.closest('a')) { navEl.classList.remove('open'); btn.setAttribute('aria-expanded', false); setMega(false); } });
     $('cartBtn').addEventListener('click', openDrawer);
+    initMega();
+  }
+
+  /* ---------- Submenú de herramientas ---------- */
+  function megaMenu(active) {
+    var byCat = {};
+    TOOLS.tools.forEach(function (t) { (byCat[t.cat] = byCat[t.cat] || []).push(t); });
+    var cols = Object.keys(TOOLS.cats).map(function (k) {
+      var c = TOOLS.cats[k];
+      return '<div class="mcol" style="--cat:' + c.color + '"><p class="mc-head"><span class="mc-ic">' + (TOOLS.icons[c.icon] || '') + '</span>' + esc(c.name) + '</p><ul>' +
+        (byCat[k] || []).map(function (t) {
+          return '<li><a href="' + ROOT + t.href + '"' + (t.slug === PAGE ? ' aria-current="page"' : '') + '><span class="ml-ic">' + (TOOLS.icons[t.icon] || '') + '</span><span>' + esc(t.short || t.name) + (t.is3d ? ' <em>3D</em>' : '') + '</span></a></li>';
+        }).join('') + '</ul></div>';
+    }).join('');
+    return '<div class="nav-dd" id="navDd">' +
+      '<button class="dd-btn" id="ddBtn" type="button" aria-expanded="false" aria-controls="ddMega"' + (active ? ' aria-current="page"' : '') + '>Herramientas<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m6 9 6 6 6-6"/></svg></button>' +
+      '<div class="mega" id="ddMega" hidden><div class="mega-in">' +
+      '<div class="mega-cols">' + cols + '</div>' +
+      '<div class="mega-foot">' +
+      '<a href="' + link('#herramientas') + '" class="mf-all">Ver las ' + TOOLS.tools.length + ' herramientas ' + ICON.arrow + '</a>' +
+      '<a href="' + ROOT + 'proyectos.html">' + (TOOLS.icons.list || '') + 'Listas por proyecto</a>' +
+      '<a href="' + ROOT + 'contratistas.html">' + (TOOLS.icons.helmet || '') + 'Zona de contratistas</a>' +
+      '<a href="' + link('#preparador') + '">' + (TOOLS.icons.roller || '') + 'Preparador de pintura 3D</a>' +
+      '</div></div></div></div>';
+  }
+  var megaT;
+  function setMega(open) {
+    var m = $('ddMega'), b = $('ddBtn'); if (!m) return;
+    clearTimeout(megaT);
+    m.hidden = !open; b.setAttribute('aria-expanded', open);
+    $('navDd').classList.toggle('open', open);
+  }
+  function initMega() {
+    var dd = $('navDd'), b = $('ddBtn'), m = $('ddMega'); if (!dd) return;
+    var desk = window.matchMedia('(min-width: 1101px) and (hover: hover)');
+    b.addEventListener('click', function (e) { e.stopPropagation(); setMega(m.hidden); });
+    dd.addEventListener('mouseenter', function () { if (desk.matches) setMega(true); });
+    dd.addEventListener('mouseleave', function () { if (desk.matches) { clearTimeout(megaT); megaT = setTimeout(function () { setMega(false); }, 220); } });
+    document.addEventListener('click', function (e) { if (!dd.contains(e.target) && desk.matches) setMega(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !m.hidden) { setMega(false); b.focus(); } });
   }
 
   /* ---------- Pie ---------- */
