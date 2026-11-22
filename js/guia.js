@@ -31,7 +31,7 @@
       spec: [['Base', 'Sellador para techos'], ['Pintura', 'Impermeabilizante acrílico elastomérico'], ['Acabado', 'Blanco reflectivo recomendado'], ['Manos', '2–3 cruzadas'], ['Secado', '4–6 h entre manos'], ['Herramientas', 'Cepillo de cerdas, rodillo de felpa gruesa, malla']],
       warn: 'No apliques si hay pronóstico de lluvia en 24 horas.',
       kit: ['Impermeabilizante acrílico', 'Sellador para techos', 'Malla de poliéster', 'Cepillo de cerdas duras', 'Rodillo de felpa gruesa'],
-      link: ['impermeabilizante', 'Calcular impermeabilizante'] },
+      link: ['calculadora.html#impermeabilizante', 'Calcular impermeabilizante'] },
     { id: 'humeda', n: 'Baño y cocina', d: 'Zonas con vapor y humedad.', ic: ICONS.bath,
       steps: ['Lava el moho con agua y cloro, enjuaga y deja secar.', 'Aplica sellador antihongos.', 'Aplica dos manos de pintura para zonas húmedas.'],
       spec: [['Base', 'Sellador antihongos'], ['Pintura', 'Acrílica antihongos o esmalte base agua'], ['Acabado', 'Satinado o semibrillo (se limpia mejor)'], ['Manos', '2'], ['Secado', '4 h entre manos'], ['Herramientas', 'Rodillo, brocha, guantes']],
@@ -47,14 +47,14 @@
       spec: [['Base', 'Sellador para exteriores'], ['Pintura', 'Acrílica para exteriores con protección UV'], ['Acabado', 'Mate o satinado'], ['Manos', '2'], ['Secado', '3–4 h entre manos'], ['Herramientas', 'Rodillo, brocha, extensión, escalera']],
       warn: 'Evita pintar con sol fuerte de mediodía: la pintura seca muy rápido y quedan marcas.',
       kit: ['Pintura para exteriores', 'Sellador para exteriores', 'Sellador elástico para fisuras', 'Rodillo y extensión', 'Brocha 4"'],
-      link: ['visualizador', 'Probar colores en 3D'] }
+      link: ['#foto', 'Probar colores en tu foto'] }
   ];
   var cur = S[0];
   app.innerHTML = '<div class="surf-pick" role="group" aria-label="Superficie">' + S.map(function (s, i) {
     return '<button class="sp" type="button" data-i="' + i + '" aria-pressed="' + (i === 0) + '">' + (s.ic || '') + '<b>' + s.n + '</b><small>' + s.d + '</small></button>';
   }).join('') + '</div><div class="guia-card" id="gCard"></div>';
   function render() {
-    var link = cur.link || ['pintura', 'Calcular cuánta pintura'];
+    var link = cur.link || ['calculadora.html#pintura', 'Calcular cuánta pintura'];
     document.getElementById('gCard').innerHTML =
       '<div class="gsteps"><span class="eyebrow">Paso a paso</span><h2>' + cur.n + '</h2><ol>' + cur.steps.map(function (x) { return '<li><span>' + x + '</span></li>'; }).join('') + '</ol>' +
       '<p class="warn"><b>Error común:</b> ' + cur.warn + '</p></div>' +

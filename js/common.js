@@ -30,20 +30,19 @@
     var el = $('mh-header');
     if (!el) return;
     var nav = [
-      ['#preparador', 'Preparador 3D', 'hot'],
+      ['catalogo.html', 'Catálogo 3D', 'catalogo', true],
       ['#herramientas', 'Herramientas', 'herramientas'],
-      ['proyectos.html', 'Proyectos', 'proyectos'],
       ['#ofertas', 'Ofertas', 'ofertas'],
       ['contratistas.html', 'Contratistas', 'contratistas'],
       ['#contacto', 'Contacto', 'contacto']
     ];
-    var cur = document.body.getAttribute('data-cat') ? 'herramientas' : PAGE;
+    var cur = /^(calculadora|color|proyectos)$/.test(PAGE) ? 'herramientas' : PAGE;
     el.outerHTML =
       '<header class="top"><div class="wrap">' +
       '<a class="brand" href="' + HOME + '" aria-label="Más Hierro Ferretería, inicio"><img class="logo" src="' + ROOT + 'assets/logo.webp" width="900" height="277" alt="Más Hierro Ferretería"></a>' +
       '<nav class="links" id="mainNav" aria-label="Principal">' +
       nav.map(function (n) {
-        var hot = n[2] === 'hot';
+        var hot = !!n[3];
         if (n[2] === 'herramientas') return megaMenu(cur === 'herramientas');
         return '<a href="' + link(n[0]) + '"' + (hot ? ' class="hot"' : '') + (cur === n[2] ? ' aria-current="page"' : '') + '>' + n[1] + (hot ? ' <em>Nuevo</em>' : '') + '</a>';
       }).join('') +
@@ -60,25 +59,24 @@
 
   /* ---------- Submenú de herramientas ---------- */
   function megaMenu(active) {
-    var byCat = {};
-    TOOLS.tools.forEach(function (t) { (byCat[t.cat] = byCat[t.cat] || []).push(t); });
-    var cols = Object.keys(TOOLS.cats).map(function (k) {
-      var c = TOOLS.cats[k];
-      return '<div class="mcol" style="--cat:' + c.color + '"><p class="mc-head"><span class="mc-ic">' + (TOOLS.icons[c.icon] || '') + '</span>' + esc(c.name) + '</p><ul>' +
-        (byCat[k] || []).map(function (t) {
-          return '<li><a href="' + ROOT + t.href + '"' + (t.slug === PAGE ? ' aria-current="page"' : '') + '><span class="ml-ic">' + (TOOLS.icons[t.icon] || '') + '</span><span>' + esc(t.short || t.name) + (t.is3d ? ' <em>3D</em>' : '') + '</span></a></li>';
-        }).join('') + '</ul></div>';
-    }).join('');
+    var I = TOOLS.icons, li = function (href, icon, text, cur, badge) {
+      return '<li><a href="' + href + '"' + (cur ? ' aria-current="page"' : '') + '><span class="ml-ic">' + (I[icon] || '') + '</span><span>' + esc(text) + (badge ? ' <em>' + badge + '</em>' : '') + '</span></a></li>';
+    };
+    var col = function (color, icon, title, href, items, cls) {
+      return '<div class="mcol' + (cls ? ' ' + cls : '') + '" style="--cat:' + color + '"><p class="mc-head"><span class="mc-ic">' + (I[icon] || '') + '</span><a href="' + href + '">' + esc(title) + '</a></p><ul>' + items + '</ul></div>';
+    };
+    var cat = (TOOLS.catalog || []).map(function (c) { return li(ROOT + 'catalogo.html#' + c.id, c.icon, c.name, false, '3D'); }).join('');
+    var calcs = (TOOLS.calcs || []).map(function (c) { return li(ROOT + 'calculadora.html#' + c.id, c.icon, c.name, false); }).join('');
+    var color = li(ROOT + 'color.html#foto', 'photo', 'Pinta tu foto', PAGE === 'color') + li(ROOT + 'color.html#guia', 'guide', '¿Qué pintura uso?') + li(link('#preparador'), 'roller', 'Preparador de pintura 3D', false, '3D');
+    var buy = li(ROOT + 'proyectos.html', 'list', 'Listas por proyecto', PAGE === 'proyectos') + li(ROOT + 'contratistas.html', 'helmet', 'Zona de contratistas', PAGE === 'contratistas') + li(link('#ofertas'), 'cube', 'Ofertas de la semana');
     return '<div class="nav-dd" id="navDd">' +
       '<button class="dd-btn" id="ddBtn" type="button" aria-expanded="false" aria-controls="ddMega"' + (active ? ' aria-current="page"' : '') + '>Herramientas<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m6 9 6 6 6-6"/></svg></button>' +
-      '<div class="mega" id="ddMega" hidden><div class="mega-in">' +
-      '<div class="mega-cols">' + cols + '</div>' +
-      '<div class="mega-foot">' +
-      '<a href="' + link('#herramientas') + '" class="mf-all">Ver las ' + TOOLS.tools.length + ' herramientas ' + ICON.arrow + '</a>' +
-      '<a href="' + ROOT + 'proyectos.html">' + (TOOLS.icons.list || '') + 'Listas por proyecto</a>' +
-      '<a href="' + ROOT + 'contratistas.html">' + (TOOLS.icons.helmet || '') + 'Zona de contratistas</a>' +
-      '<a href="' + link('#preparador') + '">' + (TOOLS.icons.roller || '') + 'Preparador de pintura 3D</a>' +
-      '</div></div></div></div>';
+      '<div class="mega" id="ddMega" hidden><div class="mega-in"><div class="mega-cols">' +
+      col('#D7261E', 'box3d', 'Catálogo 3D', ROOT + 'catalogo.html', cat) +
+      col('#9AA6B2', 'calc', 'Calculadora de materiales', ROOT + 'calculadora.html', calcs, 'wide') +
+      col('#E8A13A', 'palette', 'Estudio de color', ROOT + 'color.html', color) +
+      col('#2F9FD8', 'list', 'Compras', ROOT + 'proyectos.html', buy) +
+      '</div><div class="mega-foot"><a href="' + link('#herramientas') + '" class="mf-all">Ver todas las herramientas ' + ICON.arrow + '</a></div></div></div></div>';
   }
   var megaT;
   function setMega(open) {
@@ -101,13 +99,9 @@
   function renderFooter() {
     var el = $('mh-footer');
     if (!el) return;
-    var byCat = {};
-    TOOLS.tools.forEach(function (t) { (byCat[t.cat] = byCat[t.cat] || []).push(t); });
-    var cols = Object.keys(TOOLS.cats).map(function (k) {
-      return '<div><h4>' + esc(TOOLS.cats[k].name) + '</h4>' + (byCat[k] || []).map(function (t) {
-        return '<a href="' + ROOT + t.href + '">' + esc(t.short || t.name) + '</a>';
-      }).join('') + '</div>';
-    }).join('');
+    var cols = '<div><h4>Catálogo 3D</h4>' + (TOOLS.catalog || []).map(function (c) { return '<a href="' + ROOT + 'catalogo.html#' + c.id + '">' + esc(c.name) + '</a>'; }).join('') + '</div>' +
+      '<div class="fcalc"><h4>Calculadora</h4>' + (TOOLS.calcs || []).map(function (c) { return '<a href="' + ROOT + 'calculadora.html#' + c.id + '">' + esc(c.name) + '</a>'; }).join('') + '</div>' +
+      '<div><h4>Herramientas</h4>' + TOOLS.tools.map(function (x) { return '<a href="' + ROOT + x.href + '">' + esc(x.name) + '</a>'; }).join('') + '</div>';
     el.outerHTML =
       '<footer><div class="wrap">' +
       '<div class="fgrid">' +
@@ -115,7 +109,7 @@
       '<p>Fiabilidad, calidad y confianza para tu hogar y tu obra.</p><div data-open-status></div>' +
       '<p class="faddr">' + esc(CFG.direccion || '') + '<br>Tel. y WhatsApp: ' + esc(CFG.telefono || '') + '</p></div>' +
       cols +
-      '<div><h4>Tienda</h4><a href="' + ROOT + 'proyectos.html">Listas por proyecto</a><a href="' + ROOT + 'contratistas.html">Zona de contratistas</a><a href="' + link('#ofertas') + '">Ofertas de la semana</a><a href="' + link('#ayuda') + '">Preguntas frecuentes</a><a href="' + link('#cotizar') + '">Cotizar</a></div>' +
+      '<div><h4>Tienda</h4><a href="' + link('#ofertas') + '">Ofertas de la semana</a><a href="' + link('#ayuda') + '">Preguntas frecuentes</a><a href="' + link('#cotizar') + '">Cotizar</a><a href="' + link('#contacto') + '">Contacto</a></div>' +
       '</div>' +
       '<p class="legal">© 2026 ' + esc(CFG.nombre || 'Más Hierro Ferretería') + '. Los cálculos de las herramientas son orientativos: confírmalos con nuestro personal.</p>' +
       '</div></footer>';
@@ -319,12 +313,8 @@
   /* ---------- Herramientas relacionadas ---------- */
   function renderRelated() {
     var el = $('relatedTools'); if (!el) return;
-    var cat = document.body.getAttribute('data-cat');
-    var list = TOOLS.tools.filter(function (t) { return t.slug !== PAGE; });
-    list.sort(function (a, b) { return (b.cat === cat) - (a.cat === cat); });
-    el.innerHTML = list.slice(0, 4).map(function (t) {
-      var c = TOOLS.cats[t.cat];
-      return '<a class="rtool" href="' + ROOT + t.href + '" style="--cat:' + c.color + '"><span class="rt-ic">' + (TOOLS.icons[t.icon] || '') + '</span><span><small>' + esc(c.name) + '</small><b>' + esc(t.name) + '</b></span>' + ICON.arrow + '</a>';
+    el.innerHTML = TOOLS.tools.filter(function (t) { return t.slug !== PAGE; }).slice(0, 4).map(function (t) {
+      return '<a class="rtool" href="' + ROOT + t.href + '" style="--cat:#D7261E"><span class="rt-ic" style="color:#fff">' + (TOOLS.icons[t.icon] || '') + '</span><span><small>Herramienta</small><b>' + esc(t.name) + '</b></span>' + ICON.arrow + '</a>';
     }).join('');
   }
 

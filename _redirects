@@ -1,0 +1,20 @@
+# Enlaces antiguos de herramientas → páginas nuevas (generado por scripts/paginas.py)
+/herramientas/visualizador.html  /color.html  301
+/herramientas/foto.html  /color.html#foto  301
+/herramientas/guia-pintura.html  /color.html#guia  301
+/herramientas/bano.html  /catalogo.html#sanitarios  301
+/herramientas/consumo.html  /calculadora.html#inversor  301
+/herramientas/panete.html  /calculadora.html#concreto  301
+/herramientas/verjas.html  /proyectos.html  301
+/herramientas/pintura.html  /calculadora.html#pintura  301
+/herramientas/impermeabilizante.html  /calculadora.html#impermeabilizante  301
+/herramientas/concreto.html  /calculadora.html#concreto  301
+/herramientas/losa.html  /calculadora.html#losa  301
+/herramientas/varillas.html  /calculadora.html#varillas  301
+/herramientas/bloques.html  /calculadora.html#bloques  301
+/herramientas/ceramica.html  /calculadora.html#ceramica  301
+/herramientas/zinc.html  /calculadora.html#zinc  301
+/herramientas/pvc.html  /calculadora.html#pvc  301
+/herramientas/cable.html  /calculadora.html#cable  301
+/herramientas/inversor.html  /calculadora.html#inversor  301
+/herramientas/*  /calculadora.html  301

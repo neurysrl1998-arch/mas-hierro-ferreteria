@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Catálogo 3D · Más Hierro Ferretería</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Gira el producto, mira sus medidas reales y cambia el color, el acabado, el diámetro o el calibre. Cuando lo tengas claro, agrégalo a tu cotización.">
+<link rel="icon" href="assets/icono.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/tools.css">
+</head>
+<body data-root="" data-page="catalogo" style="--cat:#D7261E">
+<div id="mh-header"></div>
+<main>
+  <section class="thero">
+    <div class="hex-drift" aria-hidden="true"><svg class="hx h1" viewBox="0 0 100 110"><path d="M50 3 96 29v52L50 107 4 81V29Z"/></svg><svg class="hx h2" viewBox="0 0 100 110"><path d="M50 3 96 29v52L50 107 4 81V29Z"/></svg><svg class="hx h3" viewBox="0 0 100 110"><path d="M50 3 96 29v52L50 107 4 81V29Z"/></svg><img class="hx-logo" src="assets/icono.png" alt=""></div>
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Ruta"><a href="./">Inicio</a><span>/</span><span>Catálogo 3D</span></nav>
+      <div class="ttags"><span class="ttag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2.5 8.5 4.8v9.4L12 21.5l-8.5-4.8V7.3Z"/><path d="m3.5 7.3 8.5 4.8 8.5-4.8M12 12.1v9.4"/><path d="M7.7 4.9l8.5 4.8"/></svg>Productos en 3D</span></div>
+      <h1>Catálogo 3D de productos</h1>
+      <p class="lead">Gira el producto, mira sus medidas reales y cambia el color, el acabado, el diámetro o el calibre. Cuando lo tengas claro, agrégalo a tu cotización.</p>
+    </div>
+  </section>
+  <section class="tbody"><div class="wrap">
+    <div id="catApp" class="cat-app"></div>
+  </div></section>
+  <section class="trelated"><div class="wrap">
+    <div class="rel-head"><h2>Otras herramientas</h2><a href="./#herramientas">Ver todas</a></div>
+    <div class="rel-grid" id="relatedTools"></div>
+  </div></section>
+</main>
+<div id="mh-footer"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/tools-data.js"></script>
+<script src="js/colors.js"></script>
+<script src="js/common.js"></script>
+<script src="js/calcs.js"></script>
+<script src="js/catalogo3d.js"></script>
+</body>
+</html>

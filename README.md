@@ -4,23 +4,18 @@ Sitio web de **Más Hierro Ferretería**, construido alrededor de tres valores: 
 
 ## Qué incluye
 
-**Portada**
-- Preparador de pintura 3D: máquina tintométrica, agitado de la cubeta y prueba del color en la pared.
-- Centro de herramientas con 17 herramientas organizadas por área y fondo animado con el logo.
-- Ofertas de la semana, marcas, zona de contratistas, preguntas frecuentes y horario con indicador "Abierto ahora".
+**Portada:** preparador de pintura 3D, sección de herramientas, ofertas de la semana, marcas, zona de contratistas, preguntas frecuentes y horario con indicador "Abierto ahora".
 
-**Herramientas** (`herramientas/`)
-| Área | Herramientas |
+**Herramientas**
+| Página | Qué hace |
 | --- | --- |
-| Pinturas | Visualizador de habitaciones 3D · Pinta tu foto · Guía por superficie · Pintura · Impermeabilizante |
-| Construcción | Concreto · Losa · Varillas · Bloques · Pañete y repello · Cerámica · Techo de zinc · Verjas y mallas |
-| Plomería (3D) | Configurador de baño con tuberías en 3D · Cemento PVC Lanco con unión animada en 3D |
-| Electricidad (3D) | Calibre de cable con circuito 3D · Consumo eléctrico con casa 3D y simulación de apagón |
+| `catalogo.html` | Catálogo 3D de productos: inodoros, lavamanos, grifería, tubería y conexiones PVC, cables THHN y NM-B, rollo de 100 m y comparador de calibres. Gira, acerca, medidas reales, opciones de color, acabado, diámetro o calibre, y agregar a cotización. |
+| `calculadora.html` | Calculadora de materiales con pestañas: pintura, impermeabilizante, concreto, losa, varillas, bloques, cerámica, techo de zinc, cemento PVC, calibre de cable e inversor. Enlaces directos: `calculadora.html#pintura`, `#cable`… |
+| `color.html` | Estudio de color: pinta tu foto y guía de pintura por superficie. |
+| `proyectos.html` | Listas de compras por proyecto. |
+| `contratistas.html` | Registro de contratistas e historial de cotizaciones. |
 
-**Ventas**
-- Carrito "Mi cotización" en todas las páginas: se envía por WhatsApp o por formulario (Netlify Forms).
-- Listas de compras por proyecto (`proyectos.html`).
-- Zona de contratistas con registro e historial de cotizaciones (`contratistas.html`).
+**Ventas:** carrito "Mi cotización" en todas las páginas, que se envía por WhatsApp o por formulario (Netlify Forms).
 
 ## Editar datos del negocio
 
@@ -28,27 +23,28 @@ Sitio web de **Más Hierro Ferretería**, construido alrededor de tres valores: 
 | --- | --- |
 | Teléfono, WhatsApp, dirección, horario, marcas | `js/config.js` |
 | Ofertas de la semana | `data/ofertas.json` |
-| Textos de las páginas de herramientas | `scripts/paginas.py` y luego `python3 scripts/paginas.py` |
+| Textos de herramientas y menú | `scripts/paginas.py` y luego `python3 scripts/paginas.py` |
 | Fórmulas de las calculadoras | `js/calcs.js` |
 
 ## Estructura
 
 ```
-index.html              Portada
-proyectos.html          Listas de compras por proyecto
-contratistas.html       Zona de contratistas
-herramientas/*.html     Una página por herramienta (generadas por scripts/paginas.py)
-css/styles.css          Estilos base y componentes comunes
+index.html, catalogo.html, calculadora.html, color.html, proyectos.html, contratistas.html
+_redirects              Enlaces antiguos /herramientas/* → páginas nuevas
+css/styles.css          Estilos base y componentes comunes (cabecera, menú, carrito, pie)
 css/home.css            Secciones de la portada
-css/tools.css           Páginas de herramientas
+css/tools.css           Páginas de herramientas, catálogo 3D y calculadora
 js/config.js            Datos del negocio
-js/common.js            Cabecera, pie, carrito, avisos y horario en vivo
-js/colors.js            Carta de colores y fórmula de tinte
+js/common.js            Cabecera, submenú, pie, carrito, avisos y horario en vivo
+js/catalogo3d.js        Visor y modelos 3D del catálogo (three.js r128)
 js/calcs.js             Motor de calculadoras
-js/scene3d.js           Base compartida de las escenas 3D (three.js r128)
-js/*3d.js, js/*.js      Escenas 3D y lógica de cada herramienta
+js/mixer3d.js           Preparador de pintura 3D de la portada
+scripts/paginas.py      Genera las páginas de herramientas y js/tools-data.js
+assets/catalogo/        Imagen del catálogo para la portada
 data/ofertas.json       Ofertas
 ```
+
+**Agregar productos al catálogo 3D:** los modelos se definen en `js/catalogo3d.js` (lista `CATS`). Para mostrar el modelo exacto de una marca, la mejor opción es pedir al fabricante el archivo 3D (GLB) y cargarlo en el visor.
 
 ## Ver en local
 

@@ -25,7 +25,7 @@
       } },
     { id: 'bano', n: 'Hacer un baño', d: 'Tuberías, drenajes y conexiones.', ic: 'bath', cat: 'plomeria',
       f: [F('inodoro', 'Inodoros', 1, '', 1), F('lavamanos', 'Lavamanos', 1, '', 1), F('ducha', 'Duchas', 1, '', 1)],
-      link: ['herramientas/bano.html', 'Personalizar en el configurador 3D'],
+      link: ['catalogo.html#sanitarios', 'Ver inodoros y lavamanos en 3D'],
       items: function (v) {
         return U.bano({ inodoro: Math.round(v.inodoro), lavamanos: Math.round(v.lavamanos), ducha: Math.min(1, Math.round(v.ducha)), banera: 0, bidet: 0, calentador: true, distancia: 4 })
           .map(function (x) { return { n: x.n, q: x.q, u: x.u, g: 'Materiales' }; })
