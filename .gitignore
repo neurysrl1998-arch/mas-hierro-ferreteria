@@ -1,3 +1,4 @@
 .artifact.html
 .DS_Store
 node_modules/
+.maqueta/
