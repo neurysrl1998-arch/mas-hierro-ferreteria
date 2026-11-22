@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Visualizador de habitaciones 3D · Más Hierro Ferretería</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Pinta cada pared de una sala, cocina, habitación o fachada en 3D.">
+<link rel="icon" href="../assets/icono.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="../css/styles.css">
+<link rel="stylesheet" href="../css/tools.css">
+</head>
+<body data-root="../" data-page="visualizador" data-cat="pinturas" style="--cat:#E8A13A">
+<div id="mh-header"></div>
+<main>
+  <section class="thero">
+    <div class="hex-drift" aria-hidden="true"><svg class="hx h1" viewBox="0 0 100 110"><path d="M50 3 96 29v52L50 107 4 81V29Z"/></svg><svg class="hx h2" viewBox="0 0 100 110"><path d="M50 3 96 29v52L50 107 4 81V29Z"/></svg><svg class="hx h3" viewBox="0 0 100 110"><path d="M50 3 96 29v52L50 107 4 81V29Z"/></svg><img class="hx-logo" src="../assets/icono.png" alt=""></div>
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Ruta"><a href="../">Inicio</a><span>/</span><a href="../#herramientas">Herramientas</a><span>/</span><span>Pinturas</span></nav>
+      <div class="ttags"><span class="ttag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h13v5H4z"/><path d="M17 6.5h3v6h-8.5v3"/><path d="M10 15.5h3V21h-3z"/></svg>Pinturas</span><span class="t3d">3D interactivo</span></div>
+      <h1>Pinta tu espacio antes de comprar la pintura</h1>
+      <p class="lead">Elige una sala, una cocina, una habitación o una fachada. Toca cada pared y pruébale un color de nuestra carta. Al final te decimos cuántos galones de cada color necesitas.</p>
+    </div>
+  </section>
+  <section class="tbody"><div class="wrap">
+    <div class="vis-grid"><div class="stage3d" id="visStage"><canvas aria-label="Habitación 3D para probar colores en paredes"></canvas><div class="hud-chips" id="visRooms" role="group" aria-label="Espacio"></div><div class="hud-bottom"><p id="visMsg">Toca una pared para elegirla y luego un color.</p></div><span class="hud-hint">Arrastra para girar</span><div class="no3d-msg">Tu navegador no puede mostrar la vista 3D. La herramienta funciona igual.</div></div><div class="vis-panel" id="visApp"></div></div>
+  </div></section>
+  <section class="tinfo"><div class="wrap tinfo-grid"><div class="ibox"><h2>Cómo lo calculamos</h2><ul><li>Cada superficie conoce su área real en m².</li><li>Galones por color = área total de ese color × 2 manos ÷ 35 m² por galón.</li><li>Los colores se muestran con la luz que elijas: día, tarde o noche.</li></ul></div><div class="ibox"><h2>Consejos del mostrador</h2><ul class="tips"><li>La luz cambia mucho un color: pruébalo con la luz de la hora en que más usas el espacio.</li><li>Una pared de acento oscura agranda la sensación de profundidad.</li><li>Pide una muestra pequeña y píntala en tu pared antes de comprar todo.</li></ul></div><div class="ibox"><h2>Lo encuentras en la tienda</h2><div class="chips-rel"><span>Pintura acrílica</span><span>Esmaltes para puertas</span><span>Rodillos y brochas</span><span>Cinta de enmascarar</span><span>Sellador</span></div><a class="btn btn-red" href="../#cotizar">Pedir cotización</a></div></div></section>
+  <section class="trelated"><div class="wrap">
+    <div class="rel-head"><h2>Otras herramientas</h2><a href="../#herramientas">Ver todas</a></div>
+    <div class="rel-grid" id="relatedTools"></div>
+  </div></section>
+</main>
+<div id="mh-footer"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/tools-data.js"></script>
+<script src="../js/colors.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/calcs.js"></script>
+<script src="../js/scene3d.js"></script>
+<script src="../js/visualizador.js"></script>
+</body>
+</html>

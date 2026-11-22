@@ -1,0 +1,12 @@
+{
+  "vigencia": "2026-11-29",
+  "nota": "Precios de ejemplo para la presentación. Sujetos a disponibilidad.",
+  "ofertas": [
+    { "etiqueta": "-10 %", "producto": "Cemento gris 42.5 kg", "detalle": "Por funda, llevando 20 o más.", "precio": 495, "antes": 550, "categoria": "construccion" },
+    { "etiqueta": "Combo", "producto": "Kit Lanco para PVC", "detalle": "PVC Cleaner + Super PVC Cement 1/8 gal.", "precio": 690, "antes": 790, "categoria": "plomeria" },
+    { "etiqueta": "-15 %", "producto": "Pintura acrílica cubeta 5 gal", "detalle": "Colores de la carta preparados al momento.", "precio": 6375, "antes": 7500, "categoria": "pinturas" },
+    { "etiqueta": "Nuevo", "producto": "Bombillo LED 9 W (pack de 4)", "detalle": "Luz blanca, hasta 80 % menos consumo.", "precio": 450, "antes": null, "categoria": "electricidad" },
+    { "etiqueta": "-12 %", "producto": "Varilla corrugada 3/8\" × 6 m", "detalle": "Precio por unidad, llevando 50 o más.", "precio": 290, "antes": 330, "categoria": "construccion" },
+    { "etiqueta": "Oferta", "producto": "Impermeabilizante acrílico 5 gal", "detalle": "Blanco reflectivo para techos.", "precio": 5900, "antes": 6800, "categoria": "pinturas" }
+  ]
+}

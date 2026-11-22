@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Configurador de baño 3D · Más Hierro Ferretería</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Arma tu baño y mira las tuberías en 3D.">
+<link rel="icon" href="../assets/icono.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="../css/styles.css">
+<link rel="stylesheet" href="../css/tools.css">
+</head>
+<body data-root="../" data-page="bano" data-cat="plomeria" style="--cat:#2F9FD8">
+<div id="mh-header"></div>
+<main>
+  <section class="thero">
+    <div class="hex-drift" aria-hidden="true"><svg class="hx h1" viewBox="0 0 100 110"><path d="M50 3 96 29v52L50 107 4 81V29Z"/></svg><svg class="hx h2" viewBox="0 0 100 110"><path d="M50 3 96 29v52L50 107 4 81V29Z"/></svg><svg class="hx h3" viewBox="0 0 100 110"><path d="M50 3 96 29v52L50 107 4 81V29Z"/></svg><img class="hx-logo" src="../assets/icono.png" alt=""></div>
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Ruta"><a href="../">Inicio</a><span>/</span><a href="../#herramientas">Herramientas</a><span>/</span><span>Plomería</span></nav>
+      <div class="ttags"><span class="ttag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h9a4 4 0 0 1 4 4v9"/><path d="M3 13h7a1 1 0 0 1 1 1v7"/><path d="M3 6v9M14 21h4"/></svg>Plomería</span><span class="t3d">3D interactivo</span></div>
+      <h1>Arma tu baño y mira sus tuberías en 3D</h1>
+      <p class="lead">Elige los aparatos de tu baño. La vista 3D muestra el recorrido del agua fría, la caliente y el drenaje, y armamos la lista completa de tubos, conexiones y cemento Lanco.</p>
+    </div>
+  </section>
+  <section class="tbody"><div class="wrap">
+    <div class="bano-grid"><div class="stage3d" id="banoStage"><canvas aria-label="Baño 3D con tuberías de agua fría, caliente y drenaje"></canvas><div class="hud-legend"><span class="lg-cold">Agua fría</span><span class="lg-hot">Agua caliente</span><span class="lg-drain">Drenaje</span></div><button class="stage-btn" id="banoXray" type="button" aria-pressed="true">Ver tuberías</button><span class="hud-hint">Arrastra para girar</span><div class="no3d-msg">Tu navegador no puede mostrar la vista 3D. La herramienta funciona igual.</div></div><div class="bano-panel" id="banoApp"></div></div>
+  </div></section>
+  <section class="tinfo"><div class="wrap tinfo-grid"><div class="ibox"><h2>Cómo lo calculamos</h2><ul><li>Agua fría en PVC 1/2" y agua caliente en CPVC 1/2".</li><li>Drenaje del inodoro en 4" y del resto de aparatos en 2".</li><li>Contamos codos, tees, llaves angulares y adaptadores por aparato.</li><li>Tubos en piezas de 6 m.</li></ul></div><div class="ibox"><h2>Consejos del mostrador</h2><ul class="tips"><li>Prueba la presión de las líneas antes de cerrar la pared.</li><li>Deja pendiente de 2 % en los drenajes.</li><li>Pon una llave de paso general para poder cerrar el baño sin cortar la casa.</li></ul></div><div class="ibox"><h2>Lo encuentras en la tienda</h2><div class="chips-rel"><span>Tubería PVC y CPVC</span><span>Codos y tees</span><span>Llaves angulares</span><span>Cera para inodoro</span><span>Cemento Lanco</span><span>Teflón</span></div><a class="btn btn-red" href="../#cotizar">Pedir cotización</a></div></div></section>
+  <section class="trelated"><div class="wrap">
+    <div class="rel-head"><h2>Otras herramientas</h2><a href="../#herramientas">Ver todas</a></div>
+    <div class="rel-grid" id="relatedTools"></div>
+  </div></section>
+</main>
+<div id="mh-footer"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/tools-data.js"></script>
+<script src="../js/colors.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/calcs.js"></script>
+<script src="../js/scene3d.js"></script>
+<script src="../js/bano.js"></script>
+<script src="../js/bano3d.js"></script>
+</body>
+</html>
