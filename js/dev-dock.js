@@ -91,7 +91,7 @@
   .nr-no{color:#9AA1AE}.nr-no::before{content:"✕ ";color:#C9524F;font-weight:800}
   .nr-yes{color:#1B2333;font-weight:600;background:color-mix(in srgb,var(--nr-a) 5%,#fff)}.nr-yes::before{content:"✓ ";color:#137a55;font-weight:800}
   .nr-cta{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:20px;padding:16px 18px;border-radius:16px;background:#F7F5F3}
-  .nr-cta b{color:#1B2333;font-size:1.02rem}
+  .nr-cta__t{display:grid;gap:.15rem;margin:0}.nr-cta b{color:#1B2333;font-size:1.02rem}.nr-cta__t span{font-size:.88rem;color:#667085}
   .nr-cta .nr-a{color:#fff;background:var(--nr-a);border-color:var(--nr-a)}
   .nr-cta .nr-a--wa{background:#1FAF57;border-color:#1FAF57}
   @media (max-width:980px){.nr-dock .nr-lbl{display:none}.nr-dock .nr-a{padding:.6rem}.nr-dock{max-width:calc(100% - ${(C.avoidRight || 90) + 20}px)}}
@@ -157,7 +157,7 @@
           <div class="nr-row nr-row--h"><span></span><span>Plantilla genérica</span><span>Esta web</span></div>
           ${(C.compare || []).map(([k, no, yes]) => `<div class="nr-row"><span>${esc(k)}</span><span class="nr-no">${esc(no)}</span><span class="nr-yes">${esc(yes)}</span></div>`).join('')}
         </div>
-        <div class="nr-cta"><b>¿Quieres una web así para tu negocio?</b><div class="nr-links"><a class="nr-a" href="${mail}">${I.mail}Escríbeme</a><a class="nr-a nr-a--wa" href="${wa}" target="_blank" rel="noopener">${I.wa}WhatsApp</a></div></div>
+        <div class="nr-cta"><p class="nr-cta__t"><b>¿Quieres una web así para tu negocio?</b><span>${esc(C.extra || 'Y todas las herramientas o ideas que quieras agregar, también las programamos.')}</span></p><div class="nr-links"><a class="nr-a" href="${mail}">${I.mail}Escríbeme</a><a class="nr-a nr-a--wa" href="${wa}" target="_blank" rel="noopener">${I.wa}WhatsApp</a></div></div>
       </div>
     </div>
   </div>`);
