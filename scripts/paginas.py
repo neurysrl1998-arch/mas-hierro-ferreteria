@@ -126,7 +126,7 @@ HERO_BG = (
 
 def page(slug, title, h1, intro, body, extra_js=(), three=False, color="#D7261E", tag=None):
     scripts = [THREE] if three else []
-    scripts += ['<script src="js/' + f + '"></script>' for f in ["config.js", "tools-data.js", "colors.js", "common.js", "calcs.js"] + list(extra_js)]
+    scripts += ['<script src="js/' + f + '"></script>' for f in ["config.js", "tools-data.js", "colors.js", "common.js", "calcs.js"] + list(extra_js) + ["dev-dock.config.js", "dev-dock.js"]]
     tagh = ('<div class="ttags"><span class="ttag">' + tag + "</span></div>") if tag else ""
     return f"""<!doctype html>
 <html lang="es">
